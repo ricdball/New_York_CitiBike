@@ -303,7 +303,7 @@ elif page == 'Map of Most Commonly Taken Station Trips':
     with open(path_to_html, 'r') as f:
         html_data = f.read()
     
-    ## Show in web page
+    ## Show in web page random sample data size due to size of file 
     st.header('CitiBike Most Common Rides in New York')
     st.components.v1.html(html_data,height=850)
     
