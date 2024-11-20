@@ -36,7 +36,6 @@ top20_stations = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\top20_stations.cs
 df_member = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\member_usage_pie_plot.csv")
 df_season = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\season_bar_chart.csv")
 df_bike_type = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\bike_type_usage_pie.csv")
-df_sample = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\bike_trips_avgTemp_line_plot.csv")
 
 ########################################## DEFINE THE PAGES #####################################################################
 
@@ -163,8 +162,8 @@ elif page == 'Bike Type Usage Comparison':
 
     # Create user filter in the sidebar to select which user type (member/casual) to analyze
     with st.sidebar:
-        user_filter = st.multiselect(label = 'Select the User', options = df['member_casual'].unique(),
-        default = df['member_casual'].unique())
+        user_filter = st.multiselect(label = 'Select the User', options = df_member['member_casual'].unique(),
+        default = df_member['member_casual'].unique())
 
     # Filter the DataFrame based on the selected user type    
     df3 = df.query('member_casual == @user_filter')
@@ -217,8 +216,8 @@ elif page == 'Seasonal Bike Usage':
 
     # Create user filter in the sidebar to select which user type (member/casual) to analyze
     with st.sidebar:
-        user_filter = st.multiselect(label = 'Select the User', options = df['member_casual'].unique(),
-        default = df['member_casual'].unique())
+        user_filter = st.multiselect(label = 'Select the User', options = df_member['member_casual'].unique(),
+        default = df_member['member_casual'].unique())
 
      # Filter DataFrame based on the selected user type    
     df2 = df.query('member_casual == @user_filter')
@@ -294,8 +293,8 @@ elif page == 'Daily Bike Trips vs Average Temperature in New York':
     # Add line trace for daily bike rides (primary y-axis)
     fig_trip_temp.add_trace(
     go.Scatter(
-        x=df_sample['date'],
-        y=df_sample['number_of_rides'],
+        x=df_random['date'],
+        y=df_random['number_of_rides'],
         name='Daily Bike Rides',
         mode='lines',  # Only plot lines, not markers
         line=dict(color='blue'),
@@ -306,8 +305,8 @@ elif page == 'Daily Bike Trips vs Average Temperature in New York':
     # Add line trace for average daily temperature (secondary y-axis)
     fig_trip_temp.add_trace(
     go.Scatter(
-        x=df_sample['date'],
-        y=df_sample['avgTemp'],
+        x=df_random['date'],
+        y=df_random['avgTemp'],
         name='Daily Temperature',
         mode='lines',  # Only plot lines, not markers
         line=dict(color='red'),
