@@ -30,11 +30,11 @@ page = st.sidebar.selectbox('Select an aspect of the analysis',
 
 ########################## Import data ###########################################################################################
 
-df = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\reduced_data_random_set.csv")
-top20_stations = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\top20_stations.csv")
-df_season = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\season_bar_chart.csv")
-df_bike_type = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\bike_type_usage_pie.csv")
-df_line = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\bike_trips_avgTemp_line_plot.csv")
+df = pd.read_csv("reduced_data_random_set.csv")
+top20_stations = pd.read_csv("top20_stations.csv")
+df_season = pd.read_csv("season_bar_chart.csv")
+df_bike_type = pd.read_csv("bike_type_usage_pie.csv")
+df_line = pd.read_csv("bike_trips_avgTemp_line_plot.csv")
 
 ########################################## DEFINE THE PAGES #####################################################################
 
