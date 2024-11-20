@@ -25,17 +25,16 @@ st.title('CitiBike Ride Usage Strategy Dashboard')
 
 st.sidebar.title('Aspect Selector')
 page = st.sidebar.selectbox('Select an aspect of the analysis',
-                            ['Intro Page', 'Top 20 Most Popular Stations', 'Member Usage Comparison', 'Bike Type Usage Comparison', 'Seasonal Bike Usage', 'Daily Bike Trips vs Average Temperature in New York', 'Map of Most Commonly Taken Station Trips', 'Conclusion and Recommendations'])
+                            ['Intro Page', 'Top 20 Most Popular Stations', 'Bike Type Usage Comparison', 'Seasonal Bike Usage', 'Daily Bike Trips vs Average Temperature in New York', 'Map of Most Commonly Taken Station Trips', 'Conclusion and Recommendations'])
 
 
 ########################## Import data ###########################################################################################
 
-df = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\reduced_data_main_columns.csv")
-df_random = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\reduced_data_random_set.csv")
+df = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\reduced_data_random_set.csv")
 top20_stations = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\top20_stations.csv")
-df_member = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\member_usage_pie_plot.csv")
 df_season = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\season_bar_chart.csv")
 df_bike_type = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\bike_type_usage_pie.csv")
+df_line = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\bike_trips_avgTemp_line_plot.csv")
 
 ########################################## DEFINE THE PAGES #####################################################################
 
@@ -44,9 +43,8 @@ df_bike_type = pd.read_csv(r"C:\Users\Drew\New_York_CitiBike\bike_type_usage_pie
 if page == 'Intro Page':
     st.markdown('The dashboard will help with the analysis and understanding of user behavior of CitiBike ride stations to assess bike distribution in New York.')
     st.markdown('Since the Covid-19 pandemic, New York residents have increased their usage in bike sharing resulting in an increase in demand. CitiBike faces a distribution issue where riders are seeing fewer bikes at popular bike stations or stations full of docked bikes causing returns difficult for riders, which has caused an increase in customer complaints. This dashboard will help to uncover insight to combat these issues and aid in creating an optimal distribution strategy.')
-    st.markdown('The dashboard will look into the following:\n'
+    st.markdown('The dashboard studies a sample portion of the data into the following:\n'
                 '- Top 20 Most Popular Stations\n'
-                '- Member Usage\n'
                 '- Bike Type Usage\n'
                 '- Seasonal Bike Usage\n'
                 '- Daily Bike Trips vs Average Temperature in New York\n'
@@ -100,60 +98,28 @@ elif page == 'Top 20 Most Popular Stations':
    
     # Markdown text section with analysis and insights
     st.markdown('### Overall Seasonal Analysis of Stations:\n'
-                '- **Total Bike Rides**: 29.77M\n'
                 '- **Leading Station**: West 21st St & 6th Ave consistently has the highest number of rides over the seasons, showing its importance as a central hub.\n'
                 '-  Stations along Broadway and 6th Ave are some of the most frequented, indicating their role as central points for both commuter and tourist riders.\n'
                 '- **Inventory Management Insight**: To address high demand, consider expanding the bike inventory and docking capacity at these key stations to help alleviate issues of unavailability during peak times and minimize customer complaints.\n')
     st.markdown('### Winter Season Analysis of Stations:\n'
-                '- **Total Bike Rides**: 7.9M, the second highest number of rides.\n'
                 '- **Leading Station**: West 21st St & 6th Ave remains the highest grossing number of rides among users.\n'
                 '- **Inventory Management Insight**:  During winter, consider slightly reducing bike inventory to maintain bike condition for unneeded inventory over winter, while ensuring enough availability for consistent winter riders.\n'
                 '- **Safety Insight**: Introduce winter tires for bikes at popular stations like West 21st St & 6th Ave. Monitor rider activity to see if additional winter-optimized bikes might be needed.\n')
     st.markdown('### Spring Season Analysis of Stations:\n'
-                '- **Total Bike Rides**: 2.86M, the lowest number of rides among the seasons.\n'
                 '- **Leading Stations**: Chambers St & West St station becomes the highest-ranked, likely due to its proximity to parks, attracting more riders during spring.\n'
                 '- **Inventory Management Insight**: Focus on keeping bike inventory available near popular parks, such as Central Park, during springtime to support increased recreational use.\n'
                 '- **Operational Insight**: Consider running promotional campaigns to boost rider engagment during this season.')
     st.markdown('### Summer Season Analysis of Stations:\n'
-                '- **Total Bike Rides**: 13.7M, peak usage among seasons.\n'
                 '- **Leading Stations**: Chambers St & West St station is the busiest, driven by both recreational and commuter use.\n'
                 '- **Inventory Management Insight**: During peak summer months, ensure sufficient bike availability at popular recreational and commuter stations.\n'
                 '- **Operational Insight**: Real-time rebalancing and frequent checks on bike inventory will be necessary to ensure availability and reduce customer dissatisfaction during high demand periods.')
     st.markdown('### Fall Season Analysis of Stations:\n'
-                '- **Total Bike Rides**: 5.31M, the third highest number rides and shows a steady usage of riders but tapers from summer season.\n'
                 '- **Leading Stations**: West 21st & 6th Ave holds the top spot, while Broadway & West 58th St has moved to second place. University stations are showing moderate activity, likely due to student riders in the fall semester.\n'
                 '- **Inventory Management Insight**: Increase bike inventory at stations near universities to meet the needs of students returning for the semester.\n'
                 '- **Operational Insight**: Provide student commuters with discounts to encourage ride  growth and market student engagement activities to encourage more activity from younger generation.')
                 
                   
 ## Pie Chart Creations
-
-### Member Usage Comparison
-
-# Check if the selected page is 'Member Usage Comparison'
-elif page == 'Member Usage Comparison':
-
-    # Define colors for the pie chart
-    colors = ['#004B87', '#0067B1']
-
-    # Create a pie chart to visualize member vs casual usage
-    fig_member = go.Figure(go.Pie(labels=df_member['member_casual'],values=df_member['value'],marker=dict(colors=colors),textinfo='percent+label'))
-
-    fig_member.update_layout(
-    title='CitiBike Member Usage in New York',
-    xaxis_title='Type of Rider',
-    yaxis_title='Number of Trips by Riders',
-    width=1000, height=700)
-    st.plotly_chart(fig_member, use_container_width = True)
-
-    # Markdown text section with analysis and insights
-    st.markdown('### Member Usage Analysis\n'
-                '- **Member Riders**: 23,214,580 (78%)\n'
-                '- **Casual Riders**: 6,553,702 (22%)\n'
-                '- **Leading Segment**: Member riders account for **78%** of the total ride volume, demonstrating strong customer loyalty and a well-established rider base.\n'
-                '- **Operational Insight**: The graph shows that members are those who are most suffering from the inventory issue riders face. To ensure continued loyalty, the company needs to ensure availability in previously mentioned top stations during peak volume times.\n'
-                '- **Inventory Management Insight**: Increase bike availability at peak times and popular stations, particularly during commuting hours and peak summer periods to help mitigate complaints about bike shortages among member riders.\n'
-                '- **Conversion Opportunity**: As casual riders make up **22%** of customer base, there is an opportunity of converting some to member status riders through developed targeted promotional efforts, such as introductory discounted memberships or showcasing member status perks.')   
                 
 ### Bike Type Usage Comparison
 
@@ -162,8 +128,8 @@ elif page == 'Bike Type Usage Comparison':
 
     # Create user filter in the sidebar to select which user type (member/casual) to analyze
     with st.sidebar:
-        user_filter = st.multiselect(label = 'Select the User', options = df_member['member_casual'].unique(),
-        default = df_member['member_casual'].unique())
+        user_filter = st.multiselect(label = 'Select the User', options = df['member_casual'].unique(),
+        default = df['member_casual'].unique())
 
     # Filter the DataFrame based on the selected user type    
     df3 = df.query('member_casual == @user_filter')
@@ -190,21 +156,16 @@ elif page == 'Bike Type Usage Comparison':
     
     # Markdown text section with analysis and insights
     st.markdown('### Overall Bike Type Usage Analysis.\n'
-                '- **Classic Bikes**: 18,073,949 (60.7%)\n'
-                '- **Electric Bikes**: 11,694,333 (39.3%)\n'
-                '- Classic bikes are the preferred choice for users, accounting for **60.7%** of total rides, which is almost **1.5** times the usage of electric bikes at **39.3%**.\n'
+                '- Classic bikes are the preferred choice for users, accounting for **61%** of total rides, which is almost **1.5** times the usage of electric bikes at **39%**.\n'
                 '- **Inventory Management Insight**: To meet the high demand for classic bikes, increase their inventory, especially during high-demand periods, to alleviate user complaints about bike availability.\n'
-                '- **Operational Insight**: Although electric bikes are less frequently used, their consistent usage at **39.3%** indicates that maintaining or slightly increasing their availability during peak seasons and at popular stations could encourage more casual and commuter riders.\n')
+                '- **Operational Insight**: Although electric bikes are less frequently used, their consistent usage at **39%** indicates that maintaining or slightly increasing their availability during peak seasons and at popular stations could encourage more casual and commuter riders.\n'
+                '- **Member Usage**: Member riders account for the majority of bike trips compared to casual riders. This indicates that members are more significantly impacted by inventory shortages, particularly during high demand periods.')
     st.markdown('### Member Usage Analysis.\n'
-                '- **Classic Bike**:13,964,766 (60.2%)\n'
-                '- **Electric Bike**:9,249,814 (39.8%)\n'
-                '- Members clearly prefer classic bikes over electric bikes by a margin of **20.4%**. This preference could be influenced by factors such as cost and riding comfort.\n'
+                '- Members clearly prefer classic bikes over electric bikes by a margin of around **20%**. This preference could be influenced by factors such as cost and riding comfort.\n'
                 '- **Inventory Management Insight**: Focus on ensuring enough classic bikes are available in areas frequented by members during commuting hours to match their higher preference rate.\n'
                 '- **Inventory Managment Insigh**: Consider allocating additional electric bikes in areas where convenience is prioritized, such as near transit hubs, to potentially attract members seeking faster options.')
     st.markdown('### Casual User Analysis.\n'
-                '- **Classic Bike**: 4,109,183 (62.7%)\n'
-                '- **Electric Bike**: 2,444,519 (37.3%)\n'
-                '- Casual riders also show a significant preference for classic bikes, with **62.7%** of rides compared to **37.3%** for electric bikes.\n'
+                '- Casual riders also show a significant preference for classic bikes, with around **62%** of rides compared to the **38%** for electric bikes.\n'
                 '- **Operational Insight**: Since casual riders lean more toward classic bikes, consider focusing marketing and inventory availability strategies on making classic bikes easily accessible in tourist areas, especially during weekends and peak tourist seasons.\n'
                 '- **Conversion Insight**: Given the steady usage of electric bikes, promote the benefits of electric bikes, such as less effort and longer range, through targeted campaigns to potentially increase their usage among casual riders.')
 
@@ -216,8 +177,8 @@ elif page == 'Seasonal Bike Usage':
 
     # Create user filter in the sidebar to select which user type (member/casual) to analyze
     with st.sidebar:
-        user_filter = st.multiselect(label = 'Select the User', options = df_member['member_casual'].unique(),
-        default = df_member['member_casual'].unique())
+        user_filter = st.multiselect(label = 'Select the User', options = df['member_casual'].unique(),
+        default = df['member_casual'].unique())
 
      # Filter DataFrame based on the selected user type    
     df2 = df.query('member_casual == @user_filter')
@@ -262,19 +223,15 @@ elif page == 'Seasonal Bike Usage':
             '- The graph shows a clear variation amongst rides during the seasons.\n'
             '- **Summer**: Accounts for roughly **46%** of total rides and is the clear dominant peak time of the seasons, likely due to warm weather allowing riders increased leisure and commuting opportunities.\n'
             '- **Winter**: Accounts for around **27%** of total rides, making it the second-highest for number of rides among the seasons. This shows that dedicated riders are still active despite the cold and snowy weather.\n'
-            '- **Spring**: Shows the least amount of rides, accounting for only 9.6% of total rides. This may be due to unpredictable weather changes, such as rain and fluctuating temperatures, which could discourage bike riding. Additionally, some potential riders might prefer to enjoy springtime by foot before summer hits.')
-
+            '- **Spring**: Shows the least amount of rides, accounting for around 10% of total rides. This may be due to unpredictable weather changes, such as rain and fluctuating temperatures, which could discourage bike riding. Additionally, some potential riders might prefer to enjoy springtime by foot before summer hits.')
     st.markdown('### Seasonal Bike Usage for Casual Riders Analysis.\n'
-            '- **Total Rides**: 6.55M.\n'
-            '- **Summer**: Highest usage among casual riders, with around **3.2M** rides, accounting for **48.9%** of casual rides. This is likely driven by tourists and casual riders enjoying outdoor activities.\n'
-            '- **Winter & Fall**: Winter accounts for **22.9%** of casual rides, while Fall accounts for **15.3%**. Casual riders are likely taking advantage of bike availability for weekend or leisure activities even during colder months.\n'
-            '- **Spring**: Accounts for only **13%** of rides among casual riders, indicating an opportunity for engagement-boosting campaigns during this period.')
+            '- **Summer**: Casual riders are most active during the summer, with around 49% of casual rides occurring in this period, likely driven by tourists and outdoor activities.\n'
+            '- **Winter & Fall**: Winter accounts for **23%** of casual rides, while Fall accounts for **15%**. Casual riders are likely taking advantage of bike availability for weekend or leisure activities even during colder months.\n'
+            '- **Spring**: Accounts for only **13%** of rides among casual riders, indicating an opportunity for engagement campaigns during this period.')
     st.markdown('### Seasonal Bike Usage for Member Riders Analysis.\n'
-            '- **Total Rides**: 23.21M.\n'
-            '- **Summer**: Once again shows peak activity with **45.2%** of rides, indicating strong use for commuting and outdoor activities.\n'
-            '- **Winter & Fall**: Shows consistent usage among members, with winter accounting for **27.6%** and fall for **18.6%** of member rides, highlighting loyalty even during colder weather.\n'
-            '- **Spring**: Accounts for only **8.6%** of member rides, suggesting a need for engagement boosting campaigns to increase rider usage.')
-
+            '- **Summer**: Members show peak activity in the summer, accounting for 45% of rides, highlighting high demand for commuting and outdoor activities.\n'
+            '- **Winter & Fall**: Winter usage is consistent at 28%, while Fall contributes 19%, indicating loyalty among members even during colder periods.\n'
+            '- **Spring**: Accounts for around 9% of member rides, suggesting a need for engagement campaigns during this period to increase usage.')
     st.markdown('**Operational Insight**: To ensure availability during peak season, increase inventory in summer to meet high demand. Consider rebalancing bike distribution to focus more on areas with high leisure or tourism activity during summer.')
     st.markdown('**Engagement Boost Insight**: Focus promotional events or seasonal discounts during the fall, winter, and spring periods to gain rider engagement during non-peak seasons to encourage more rides.')
 
@@ -293,8 +250,8 @@ elif page == 'Daily Bike Trips vs Average Temperature in New York':
     # Add line trace for daily bike rides (primary y-axis)
     fig_trip_temp.add_trace(
     go.Scatter(
-        x=df_random['date'],
-        y=df_random['number_of_rides'],
+        x=df_line['date'],
+        y=df_line['number_of_rides'],
         name='Daily Bike Rides',
         mode='lines',  # Only plot lines, not markers
         line=dict(color='blue'),
@@ -305,8 +262,8 @@ elif page == 'Daily Bike Trips vs Average Temperature in New York':
     # Add line trace for average daily temperature (secondary y-axis)
     fig_trip_temp.add_trace(
     go.Scatter(
-        x=df_random['date'],
-        y=df_random['avgTemp'],
+        x=df_line['date'],
+        y=df_line['avgTemp'],
         name='Daily Temperature',
         mode='lines',  # Only plot lines, not markers
         line=dict(color='red'),
@@ -365,7 +322,7 @@ elif page == 'Conclusion and Recommendations':
     st.header('Conclusion and Recommendations')
     st.markdown('### Key Conclusions:\n'
                 '- **Leading Stations**: West 21st St & 6th Ave consistently has the highest number of rides, indicating its strategic importance as a central commuter or tourist hub. While, stations along Broadway and 6th Ave have frequented locations that also suggest their role as commuter hubs.\n'
-                '- **Member Usage**: Member riders dominate usage at **78%**, emphasizing the need to ensure bike availability to maintain loyalty. Casual riders make up **22%** of rides, indicating possible conversion opportunities to increase loyalty members.\n'
+                '- **Member Usage**: Member riders dominate usage at around **72%**, emphasizing the need to ensure bike availability to maintain loyalty. Casual riders make up around **28%** of rides, indicating possible conversion opportunities to increase loyalty members.\n'
                 '- **Seasonal and Temperature Rides**: There was found to be a clear correlation between temperature and bike trips. It was found that summer had the highest number of rides between both member and casual riders. While, the number of rides began to drop during winter periods, there was still a frequent dedicated number of riders during the winter periods.\n'
                 '- **Geographical Insight**: Central Manhattan areas, such as near New York University, Columbia University, Hudson River Greenway, and Central Park, saw high activity levels and showed great importance as major hubs for commuters, students, and recreational riders.')
     st.markdown('### Recommendations:\n'
