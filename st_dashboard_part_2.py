@@ -290,7 +290,7 @@ elif page == 'Daily Bike Trips vs Average Temperature in New York':
                 '- **Increasing Rides**: A gradual increase in bike usage starts from March, as temperatures warm up, showing a steady rise towards summer.\n'
                 '- **Decline in Usage**: A decline begins in November as temperatures cool, with the coldest months, December to February, showing lower daily rides compared to summer, though winter still ranks second among all seasons.')
     st.markdown('**Inventory Management for Peak Periods**: During peak months, such as June to August, increase bike availability to meet high demand by reallocating inventory to high-traffic areas, including stations around central park, coastline stations, and university zones.')
-    st.markdown('**Inventory Management for Winter**: During the winter months of November to February, ensure sufficient inventory for winter demand but optimize costs by reducing excess supply where feasible from least popular station areas.\n')
+    st.markdown('**Inventory Management for Colder Periods**: During the colder period months of November to April, ensure sufficient inventory for winter demand but optimize costs by reducing excess supply by around **38%** where feasible, such as from least popular station areas.\n')
     st.markdown('**Engagement Boost Insight**: During colder periods, develop incentive programs for bike usage through promotional discounts or targeted marketing campaigns to encourage riding during colder periods to help encourage even more engagement during the colder period.')
     
 ### Add Kepler Map of Most Commonly Taken Station Trips
