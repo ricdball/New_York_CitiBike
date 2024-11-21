@@ -322,19 +322,18 @@ elif page == 'Conclusion and Recommendations':
     st.header('Conclusion and Recommendations')
     st.markdown('### Key Conclusions:\n'
                 '- **Leading Stations**: West 21st St & 6th Ave consistently has the highest number of rides, indicating its strategic importance as a central commuter or tourist hub. While, stations along Broadway and 6th Ave have frequented locations that also suggest their role as commuter hubs.\n'
-                '- **Member Usage**: Member riders dominate usage at around **72%**, emphasizing the need to ensure bike availability to maintain loyalty. Casual riders make up around **28%** of rides, indicating possible conversion opportunities to increase loyalty members.\n'
+                '- **Bike Type Usage**: Riders show a preference to classic bikes around **61%*, nearly a 1.5 times more than electric bikes at **39%** usage by riders.\n'
                 '- **Seasonal and Temperature Rides**: There was found to be a clear correlation between temperature and bike trips. It was found that summer had the highest number of rides between both member and casual riders. While, the number of rides began to drop during winter periods, there was still a frequent dedicated number of riders during the winter periods.\n'
                 '- **Geographical Insight**: Central Manhattan areas, such as near New York University, Columbia University, Hudson River Greenway, and Central Park, saw high activity levels and showed great importance as major hubs for commuters, students, and recreational riders.')
     st.markdown('### Recommendations:\n'
                 '**Inventory Management**:\n'
                 '- Increase inventory during summer peak periods to counter the high-demands. Real-time rebalancing and proactive inventory checks should be performed to best avoid shortages.\n'
                 '- Prioritize inventory availability in high-demand areas, such as leisure/tourist zones during summer and university areas during the fall.\n' 
-                '- Reduce inventory in off-peak seasons, such as winter and spring, to maintain bike conditions and ensure consistent docking availability.\n'
+                '- Reduce inventory by **38%** in the colder periods, such as November to April, to maintain bike conditions and ensure consistent docking availability.\n'
                 '- Expand the number of classic bikes, given their higher demand, to address customer complaints regarding availability.')
     st.markdown('**Operational and Safety Initiatives**:\n'
                 '- Implement a safety initiative that includes adding winter tires on bikes during the winter season to enhance usability and attract more rides in colder weather')
     st.markdown('**Marketing Opportunities**:\n'
-                '- Develop promotional efforts to convert casual riders into members, such as discounted memberships highlighting the benefits of being a member.\n'
                 '- Launch marketing campaigns and seasonal discounts during off-peak periods, such as fall and winter, to maintain rider engagement during quieter times.\n'
                 '- Promote recreational activities around parks and river routes in spring and summer to attract more casual and tourist riders.\n')
     st.markdown('**Community Engagement Opportunities**:\n'
