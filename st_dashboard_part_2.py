@@ -322,7 +322,7 @@ elif page == 'Conclusion and Recommendations':
     st.header('Conclusion and Recommendations')
     st.markdown('### Key Conclusions:\n'
                 '- **Leading Stations**: West 21st St & 6th Ave consistently has the highest number of rides, indicating its strategic importance as a central commuter or tourist hub. While, stations along Broadway and 6th Ave have frequented locations that also suggest their role as commuter hubs.\n'
-                '- **Bike Type Usage**: Riders show a preference to classic bikes around **61%*, nearly a 1.5 times more than electric bikes at **39%** usage by riders.\n'
+                '- **Bike Type Usage**: Riders show a preference to classic bikes around **61%**, nearly a 1.5 times more than electric bikes at **39%** usage by riders.\n'
                 '- **Seasonal and Temperature Rides**: There was found to be a clear correlation between temperature and bike trips. It was found that summer had the highest number of rides between both member and casual riders. While, the number of rides began to drop during winter periods, there was still a frequent dedicated number of riders during the winter periods.\n'
                 '- **Geographical Insight**: Central Manhattan areas, such as near New York University, Columbia University, Hudson River Greenway, and Central Park, saw high activity levels and showed great importance as major hubs for commuters, students, and recreational riders.')
     st.markdown('### Recommendations:\n'
