@@ -17,9 +17,13 @@ The project aims to diagnose distribution inefficiencies in Citi Bike's New York
 ● Customer Support Tea
 ## Dataset
 [Top20 Stations](https://github.com/user-attachments/files/18247121/top20_stations.csv)
+
 [Seasonal Trip Data](https://github.com/user-attachments/files/18247123/season_bar_chart.csv)
+
 [Reduced Data Random Set](https://github.com/user-attachments/files/18247124/reduced_data_random_set.csv)
+
 [Bike Type Usage Data](https://github.com/user-attachments/files/18247125/bike_type_usage_pie.csv)
+
 [Bike Trips by Average Temperature Data](https://github.com/user-attachments/files/18247127/bike_trips_avgTemp_line_plot.csv)
 ## Project Tools
 ● Pandas
